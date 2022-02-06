@@ -48,6 +48,9 @@ android {
 
 dependencies {
 
+  implementation(project(":domain"))
+  implementation(project(":data"))
+
   //Kotlin
   implementation(Lib.Kotlin.KTX_CORE)
 
@@ -59,6 +62,9 @@ dependencies {
   implementation(Lib.Android.UI_TOOLING_PREVIEW)
   implementation(Lib.Android.LIFECYCLE_RUNTIME_KTX)
   implementation(Lib.Android.ACTIVITY_COMPOSE)
+
+  implementation("com.jakewharton.timber:timber:5.0.1")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt")
 
   //Test
   testImplementation(Lib.TestLib.JUNIT)
