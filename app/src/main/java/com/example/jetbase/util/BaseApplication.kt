@@ -1,4 +1,4 @@
-package com.example.jetbase
+package com.example.jetbase.util
 
 import android.app.Application
 import timber.log.Timber

@@ -37,7 +37,6 @@ android {
   }
   composeOptions {
     kotlinCompilerExtensionVersion = Versions.COMPOSE_VERSION
-    kotlinCompilerVersion = "1.5.21"
   }
   packagingOptions {
     resources {
@@ -64,7 +63,8 @@ dependencies {
   implementation(Lib.Android.ACTIVITY_COMPOSE)
 
   implementation("com.jakewharton.timber:timber:5.0.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+  implementation("io.coil-kt:coil-compose:1.4.0")
 
   //Test
   testImplementation(Lib.TestLib.JUNIT)
