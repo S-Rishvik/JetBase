@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">JetBase</string>
+  <string name="avatar">Avatar</string>
+  <string name="opened_at">Opened at:</string>
+  <string name="closed_at">Closed at:</string>
+  <string name="no_internet">Please check your internet connection and try again.</string>
 </resources>
