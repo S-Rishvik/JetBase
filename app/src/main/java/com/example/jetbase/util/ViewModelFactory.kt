@@ -9,7 +9,8 @@ import com.example.domain.usecase.GetPullRequestsUseCase
 import com.example.jetbase.ui.activity.main.MainActivityVM
 
 class ViewModelFactory: ViewModelProvider.Factory {
-  override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+
+  override fun <T : ViewModel> create(modelClass: Class<T>): T {
     when (modelClass) {
       MainActivityVM::class.java -> {
         val githubRemoteSource = GithubRemoteSourceImpl(GithubApiService.getRetrofitService())
@@ -17,6 +18,7 @@ class ViewModelFactory: ViewModelProvider.Factory {
         val getPullRequestsUseCase = GetPullRequestsUseCase(githubRepository)
         return MainActivityVM(getPullRequestsUseCase) as T
       }
+
       else -> throw RuntimeException("ViewModel Not Found")
     }
   }

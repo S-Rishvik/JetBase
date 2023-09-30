@@ -45,94 +45,103 @@ import com.example.jetbase.util.ViewState.Success
 
 class MainActivity : ComponentActivity() {
 
-  private val viewModel: MainActivityVM by lazy {
-    ViewModelProvider(this, ViewModelFactory())[MainActivityVM::class.java]
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent {
-      JetBaseTheme {
-        val pullRequestsState by viewModel.pullRequestsLiveData.collectAsState()
-        MainActivityScreen(pullRequestsState)
-      }
+    private val viewModel: MainActivityVM by lazy {
+        ViewModelProvider(this, ViewModelFactory())[MainActivityVM::class.java]
     }
-    viewModel.getClosedPullRequests("mutualmobile", "Praxis")
-  }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            JetBaseTheme {
+                val pullRequestsState by viewModel.pullRequestsLiveData.collectAsState()
+                MainActivityScreen(pullRequestsState)
+            }
+        }
+        viewModel.getClosedPullRequests("mutualmobile", "Praxis")
+    }
 }
 
 @Composable
 fun MainActivityScreen(viewState: ViewState<PullRequestEntity>) {
-  Scaffold {
-    when (viewState) {
-      is Success -> PullsList(pullRequestEntity = viewState.data)
-      is Error -> {
-        ShowToast(message = viewState.message)
-      }
-      Loading -> Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
-      ) {
-        CircularProgressIndicator()
-      }
-      NoInternet -> {
-        ShowToast(message = stringResource(string.no_internet))
-      }
+    Scaffold {
+        when (viewState) {
+            is Success -> PullsList(pullRequestEntity = viewState.data)
+            is Error -> {
+                ShowToast(message = viewState.message)
+            }
+
+            Loading -> Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator()
+            }
+
+            NoInternet -> {
+                ShowToast(message = stringResource(string.no_internet))
+            }
+        }
     }
-  }
 }
 
 @Composable
 fun PullsList(pullRequestEntity: PullRequestEntity) {
-  LazyColumn {
-    items(pullRequestEntity) { item: PullRequestEntityItem ->
-      PullRequestItem(pullRequestEntityItem = item)
+    LazyColumn {
+        items(pullRequestEntity) { item: PullRequestEntityItem ->
+            PullRequestItem(pullRequestEntityItem = item)
+        }
     }
-  }
 }
 
 @Composable
 fun PullRequestItem(pullRequestEntityItem: PullRequestEntityItem) {
-  Row(
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(8.dp)
-  ) {
-    Image(
-      painter = rememberImagePainter(pullRequestEntityItem.userImageUrl),
-      contentDescription = stringResource(string.avatar),
-      modifier = Modifier
-        .size(64.dp)
-        .padding(4.dp)
-        .clip(CircleShape)
-    )
-    Column {
-      CustomText(text = pullRequestEntityItem.title.toString(), FontWeight.Bold, Color.Black)
-      CustomText(text = pullRequestEntityItem.userName.toString())
-      Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        CustomText(text = stringResource(string.opened_at), color = Color.Blue)
-        CustomText(text = pullRequestEntityItem.createdDate.toString())
-      }
-      Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        CustomText(text = stringResource(string.closed_at), color = Color.Red)
-        CustomText(text = pullRequestEntityItem.closedDate.toString())
-      }
-      Divider()
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Image(
+            painter = rememberImagePainter(pullRequestEntityItem.userImageUrl),
+            contentDescription = stringResource(string.avatar),
+            modifier = Modifier
+                .size(64.dp)
+                .padding(4.dp)
+                .clip(CircleShape)
+        )
+        Column {
+            CustomText(text = pullRequestEntityItem.title.toString(), FontWeight.Bold, Color.Black)
+            CustomText(text = pullRequestEntityItem.userName.toString())
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CustomText(text = stringResource(string.opened_at), color = Color.Blue)
+                CustomText(text = pullRequestEntityItem.createdDate.toString())
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CustomText(text = stringResource(string.closed_at), color = Color.Red)
+                CustomText(text = pullRequestEntityItem.closedDate.toString())
+            }
+            Divider()
+        }
     }
-  }
 }
 
 @Composable
-fun ShowToast(message: String){
-  Toast.makeText(LocalContext.current,message,Toast.LENGTH_LONG).show()
+fun ShowToast(message: String) {
+    Toast.makeText(LocalContext.current, message, Toast.LENGTH_LONG).show()
 }
 
 @Composable
 fun CustomText(
-  text: String,
-  fontWeight: FontWeight = FontWeight.Normal,
-  color: Color = Color.Gray
+    text: String,
+    fontWeight: FontWeight = FontWeight.Normal,
+    color: Color = Color.Gray
 ) {
-  Text(text = text, modifier = Modifier.padding(4.dp), fontWeight = fontWeight, color = color)
+    Text(text = text, modifier = Modifier.padding(4.dp), fontWeight = fontWeight, color = color)
 }
