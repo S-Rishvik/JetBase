@@ -1,3 +1,6 @@
 object Versions {
-  const val COMPOSE_VERSION = "1.0.5"
+  const val COMPOSE_VERSION = "1.5.3"
+  const val COMPOSE_BOM = "2023.05.00"
+  const val KTX_CORE_VERSION = "1.2.0"
+  const val COROUTINES_VERSION = "1.3.7"
 }

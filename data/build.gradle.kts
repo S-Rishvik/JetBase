@@ -4,11 +4,10 @@ plugins {
 }
 
 android {
-  compileSdk = 31
+  compileSdk = 33
 
   defaultConfig {
     minSdk = 21
-    targetSdk = 31
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles("consumer-rules.pro")
@@ -27,6 +26,7 @@ android {
   kotlinOptions {
     jvmTarget = "1.8"
   }
+  namespace = "com.example.data"
 }
 
 dependencies {
