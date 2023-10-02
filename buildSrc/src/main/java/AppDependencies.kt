@@ -1,6 +1,3 @@
-import Versions.COMPOSE_BOM
-import Versions.COMPOSE_VERSION
-
 object BuildPlugins {
 
 }

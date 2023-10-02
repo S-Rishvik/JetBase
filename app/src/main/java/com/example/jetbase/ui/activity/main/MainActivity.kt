@@ -74,7 +74,7 @@ fun MainActivityScreen(viewState: ViewState<PullRequestEntity>) {
             Loading -> Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 CircularProgressIndicator()
             }
@@ -100,7 +100,7 @@ fun PullRequestItem(pullRequestEntityItem: PullRequestEntityItem) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         Image(
             painter = rememberImagePainter(pullRequestEntityItem.userImageUrl),
@@ -108,21 +108,21 @@ fun PullRequestItem(pullRequestEntityItem: PullRequestEntityItem) {
             modifier = Modifier
                 .size(64.dp)
                 .padding(4.dp)
-                .clip(CircleShape)
+                .clip(CircleShape),
         )
         Column {
             CustomText(text = pullRequestEntityItem.title.toString(), FontWeight.Bold, Color.Black)
             CustomText(text = pullRequestEntityItem.userName.toString())
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 CustomText(text = stringResource(string.opened_at), color = Color.Blue)
                 CustomText(text = pullRequestEntityItem.createdDate.toString())
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 CustomText(text = stringResource(string.closed_at), color = Color.Red)
                 CustomText(text = pullRequestEntityItem.closedDate.toString())
@@ -141,7 +141,7 @@ fun ShowToast(message: String) {
 fun CustomText(
     text: String,
     fontWeight: FontWeight = FontWeight.Normal,
-    color: Color = Color.Gray
+    color: Color = Color.Gray,
 ) {
     Text(text = text, modifier = Modifier.padding(4.dp), fontWeight = fontWeight, color = color)
 }
