@@ -12,7 +12,6 @@ object Lib {
         const val COROUTINES_ANDROID =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_VERSION}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:1.3.1"
-        const val MATERIAL_DESIGN = "com.google.android.material:material:1.4.0"
         const val COMPOSE_UI = "androidx.compose.ui:ui"
         const val COMPOSE_MATERIAL_DESIGN = "androidx.compose.material:material"
         const val UI_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
