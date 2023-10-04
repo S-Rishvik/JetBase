@@ -16,7 +16,7 @@ class GithubRemoteSourceImpl(private val githubApiService: GithubApiService) : G
                 githubApiService.getPullRequests(
                     pullRequest.owner,
                     pullRequest.repo,
-                    pullRequest.state
+                    pullRequest.state,
                 )
             mapper.map(response)
         }

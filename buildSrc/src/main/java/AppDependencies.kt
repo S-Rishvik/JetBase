@@ -1,6 +1,4 @@
-object BuildPlugins {
-
-}
+object BuildPlugins
 
 object Lib {
 
