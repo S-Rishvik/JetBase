@@ -13,6 +13,8 @@ object Lib {
         const val LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
         const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose"
         const val TIMBER = "com.jakewharton.timber:timber:5.0.1"
+        const val HILT = "com.google.dagger:hilt-android:${Versions.HILT_VERSION}"
+        const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT_VERSION}"
     }
 
     object Kotlin {
