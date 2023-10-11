@@ -6,7 +6,6 @@ import retrofit2.http.Query
 
 interface GithubApiService {
     companion object {
-        private const val PATH_OWNER = "owner"
         private const val PATH_REPO = "repo"
         private const val Query_STATE = "state"
         private const val END_POINT_GET_PULL_REQUEST = "{$PATH_REPO}/pulls"
