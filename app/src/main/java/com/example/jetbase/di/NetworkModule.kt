@@ -1,6 +1,7 @@
 package com.example.jetbase.di
 
 import com.example.data.remote.github.GithubApiService
+import com.example.jetbase.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +34,7 @@ object NetworkModule {
     fun provideGithubApiService(okHttpLoggingInterceptor: HttpLoggingInterceptor, gsonConverterFactory: GsonConverterFactory): GithubApiService {
         val retrofit =
             Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(BuildConfig.baseUrl)
                 .addConverterFactory(gsonConverterFactory)
                 .client(OkHttpClient.Builder().addInterceptor(okHttpLoggingInterceptor).build())
                 .build()

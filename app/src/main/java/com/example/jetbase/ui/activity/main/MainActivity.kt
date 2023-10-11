@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                 MainActivityScreen(pullRequestsState)
             }
         }
-        viewModel.getClosedPullRequests("mutualmobile", "Praxis")
+        viewModel.getClosedPullRequests( "compose-samples")
     }
 }
 

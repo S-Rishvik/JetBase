@@ -21,15 +21,6 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -49,6 +40,26 @@ android {
         }
     }
     namespace = "com.example.jetbase"
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    setFlavorDimensions(listOf("app"))
+    productFlavors {
+        create("dev"){
+            dimension = "app"
+            buildConfigField("String","baseUrl", formatString("https://api.github.com/repos/android/"))
+        }
+        create("prod"){
+            dimension = "app"
+            buildConfigField("String","baseUrl",formatString("https://api.github.com/repos/kotlin/"))
+        }
+    }
 }
 
 dependencies {
@@ -84,4 +95,8 @@ dependencies {
     androidTestImplementation(platform(Lib.Android.COMPOSE_BOM))
     androidTestImplementation(Lib.TestLib.UI_TEST_JUNIT)
     debugImplementation(Lib.TestLib.UI_TOOLING)
+}
+
+fun formatString(value: String): String {
+    return '"' + value + '"'
 }

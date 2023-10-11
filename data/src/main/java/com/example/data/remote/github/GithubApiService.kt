@@ -34,7 +34,6 @@ interface GithubApiService {
 
     @GET(END_POINT_GET_PULL_REQUEST)
     suspend fun getPullRequests(
-        @Path(PATH_OWNER) owner: String,
         @Path(PATH_REPO) repo: String,
         @Query(Query_STATE) state: String,
     ): PullRequestModel
