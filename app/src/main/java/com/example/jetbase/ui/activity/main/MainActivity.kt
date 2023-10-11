@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                 MainActivityScreen(pullRequestsState)
             }
         }
-        viewModel.getClosedPullRequests( "compose-samples")
+        viewModel.getClosedPullRequests("compose-samples")
     }
 }
 

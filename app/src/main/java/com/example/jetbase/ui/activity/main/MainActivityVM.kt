@@ -29,7 +29,7 @@ class MainActivityVM @Inject constructor(private val getPullRequestsUseCase: Get
     fun getClosedPullRequests(repo: String) = viewModelScope.launch {
         _pullRequestsLiveData.value = ViewState.Loading
         val result =
-            getPullRequestsUseCase.performAsync(PullRequest( repo, AppConstants.CLOSED_PULLS))
+            getPullRequestsUseCase.performAsync(PullRequest(repo, AppConstants.CLOSED_PULLS))
         _pullRequestsLiveData.value = handlePullRequestResult(result)
     }
 
