@@ -13,11 +13,14 @@ import com.example.jetbase.util.AppConstants
 import com.example.jetbase.util.ViewState
 import com.example.jetbase.util.ViewState.Error
 import com.example.jetbase.util.ViewState.NoInternet
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivityVM(private val getPullRequestsUseCase: GetPullRequestsUseCase) : ViewModel() {
+@HiltViewModel
+class MainActivityVM @Inject constructor(private val getPullRequestsUseCase: GetPullRequestsUseCase) : ViewModel() {
 
     private val _pullRequestsLiveData =
         MutableStateFlow<ViewState<PullRequestEntity>>(ViewState.Loading)

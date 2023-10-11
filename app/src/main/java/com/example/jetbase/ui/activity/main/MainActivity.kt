@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,24 +31,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import coil.compose.rememberImagePainter
 import com.example.domain.entity.PullRequestEntity
 import com.example.domain.entity.PullRequestEntity.PullRequestEntityItem
 import com.example.jetbase.R.string
 import com.example.jetbase.ui.theme.JetBaseTheme
-import com.example.jetbase.util.ViewModelFactory
 import com.example.jetbase.util.ViewState
 import com.example.jetbase.util.ViewState.Error
 import com.example.jetbase.util.ViewState.Loading
 import com.example.jetbase.util.ViewState.NoInternet
 import com.example.jetbase.util.ViewState.Success
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainActivityVM by lazy {
-        ViewModelProvider(this, ViewModelFactory())[MainActivityVM::class.java]
-    }
+    private val viewModel: MainActivityVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

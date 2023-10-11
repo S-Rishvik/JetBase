@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -65,10 +67,15 @@ dependencies {
     implementation(Lib.Android.UI_TOOLING_PREVIEW)
     implementation(Lib.Android.LIFECYCLE_RUNTIME_KTX)
     implementation(Lib.Android.ACTIVITY_COMPOSE)
-
     implementation(Lib.Android.TIMBER)
     implementation(Lib.Android.COROUTINES_ANDROID)
     implementation(Lib.Kotlin.COIL)
+    implementation(Lib.Android.HILT)
+    ksp(Lib.Android.HILT_COMPILER)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
+    implementation("com.google.code.gson:gson:2.8.9")
 
     //Test
     testImplementation(Lib.TestLib.JUNIT)
