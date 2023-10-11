@@ -26,10 +26,10 @@ class MainActivityVM @Inject constructor(private val getPullRequestsUseCase: Get
         MutableStateFlow<ViewState<PullRequestEntity>>(ViewState.Loading)
     val pullRequestsLiveData: StateFlow<ViewState<PullRequestEntity>> = _pullRequestsLiveData
 
-    fun getClosedPullRequests(owner: String, repo: String) = viewModelScope.launch {
+    fun getClosedPullRequests(repo: String) = viewModelScope.launch {
         _pullRequestsLiveData.value = ViewState.Loading
         val result =
-            getPullRequestsUseCase.performAsync(PullRequest(owner, repo, AppConstants.CLOSED_PULLS))
+            getPullRequestsUseCase.performAsync(PullRequest(repo, AppConstants.CLOSED_PULLS))
         _pullRequestsLiveData.value = handlePullRequestResult(result)
     }
 
